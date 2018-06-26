@@ -16,6 +16,9 @@ import java.util.concurrent.TimeUnit
 /**
  * Created by LiXiaoSong on 18/6/24
  *功能描述：网络管理类，在application中作为单例使用
+ * 使用方式：
+ *         1.在Application的onCreate方法中调用：NetManager.init()
+ *         2.任意地方：NetManager.getInstance().exec(Service(自己定义的).接口方法（接口参数）
  */
 class NetManager {
     private var retrofit: Retrofit
@@ -43,6 +46,7 @@ class NetManager {
         }
     }
 
+    //缓存策略拦截器，有网时，将数据进行缓存，但每隔5秒将从新请求新的数据，无网时，直接使用缓存数据
     private val cacheInterceptor: Interceptor = object : Interceptor {
         override fun intercept(chain: Interceptor.Chain?): Response {
             var request = chain!!.request()
@@ -106,7 +110,8 @@ class NetManager {
     public fun <T : Any> exec(flowable: Flowable<HttpResult<T>>) {
         flowable
                 .doOnSubscribe(Consumer {
-//                    if (!haveNetConnection(context)) {
+                    //由于有缓存的存在，这里暂时当做备用策略
+                    //                    if (!haveNetConnection(context)) {
 //                        throw ApiException(ResultHelper.NET_ERROR, "网络异常")
 //                    }
                 })
