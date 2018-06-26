@@ -1,8 +1,8 @@
 package wanandroid.xiaosong.kotlin.library.net
 
 /**
- * Created by LiXiaoSong on 18/6/25
+ * Created by LiXiaoSong on 18/6/26
  *功能描述：
  */
-interface NetRequest {
+class BaseData {
 }

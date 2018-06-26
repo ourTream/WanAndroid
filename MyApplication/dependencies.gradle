@@ -18,6 +18,7 @@ ext {
     rxAndroidVersion = '2.0.2'
     rxKotlinVersion = '2.2.0'
     rxJava2CallAdapterVersion = '2.3.0'
+    rxCacheVersion= '2.3.1'
     gsonConverterVersion='2.3.0'
     loggerVersion='3.8.1'
     kotlin_coroutinesVersion = "0.15"
@@ -59,6 +60,8 @@ ext {
             butterKnifeCompile : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
             rxJava             : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             rxJava2CallAdapter : "com.squareup.retrofit2:adapter-rxjava2:${rxJava2CallAdapterVersion}",
+            rxCache            : "com.zchu:rxcache:${rxCacheVersion}",
+            rxCacheKotlin      : "com.zchu:rxcache-kotlin:${rxCacheVersion}",
             gsonConverter      : "com.squareup.retrofit2:converter-gson:${gsonConverterVersion}",
             loggionInterceptor : "com.squareup.okhttp3:logging-interceptor:${loggerVersion}",
             rxKotlin           : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
