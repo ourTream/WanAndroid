@@ -11,4 +11,8 @@ class HomePageFragment:BaseFragment(){
     override fun getLayoutId(): Int {
         return R.layout.fragment_main
     }
+
+    override fun initViews() {
+
+    }
 }

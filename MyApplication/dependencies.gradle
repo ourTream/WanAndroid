@@ -29,6 +29,7 @@ ext {
     glideVersion = '3.7.0'
     dbflow_version = '4.2.4'
     barLibraryVersion = '2.3.0'
+    baseRecyclerAdapterVersion='2.9.40'
 
 //小日本写的转换器 https://github.com/wasabeef/glide-transformations
     glideTransformationVersion = '2.0.1'
@@ -83,7 +84,9 @@ ext {
             dbflowrxjava2      : "com.github.Raizlabs.DBFlow:dbflow-rx2:${dbflow_version}",
             dbflowkotlinrx     : "com.github.Raizlabs.DBFlow:dbflow-rx2-kotlinextensions:${dbflow_version}",
             //沉浸式状态栏
-            barlibrary         : "com.gyf.barlibrary:barlibrary:${barLibraryVersion}"
+            barlibrary         : "com.gyf.barlibrary:barlibrary:${barLibraryVersion}",
+            //万能recycleAdapter
+            baseRecycleViewAdapter:"com.github.CymChad:BaseRecyclerViewAdapterHelper:${baseRecyclerAdapterVersion}"
 
     ]
 

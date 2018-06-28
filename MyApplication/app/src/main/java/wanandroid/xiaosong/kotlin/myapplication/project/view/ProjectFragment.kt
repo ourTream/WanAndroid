@@ -1,4 +1,4 @@
-package wanandroid.xiaosong.kotlin.myapplication.mine
+package wanandroid.xiaosong.kotlin.myapplication.project.view
 
 import android.support.v4.app.Fragment
 import wanandroid.xiaosong.kotlin.myapplication.R
@@ -8,8 +8,8 @@ import wanandroid.xiaosong.kotlin.myapplication.base.BaseFragment
  * Created by LiXiaoSong on 18/6/28
  *功能描述：
  */
-class MineFragment: BaseFragment() {
+class ProjectFragment :BaseFragment(){
     override fun getLayoutId(): Int {
-        return R.layout.fragment_mine
+        return R.layout.fragment_project
     }
 }

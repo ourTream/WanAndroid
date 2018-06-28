@@ -3,6 +3,7 @@ package wanandroid.xiaosong.kotlin.library.net
 import android.content.Context
 import android.util.Log
 import io.reactivex.Flowable
+import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
@@ -122,10 +123,10 @@ class NetManager {
     }
 
     /**
-     * 执行网络请求方法
+     * 执行网络请求方法,返回可取消的内容
      */
-    public fun <T : Any> exec(flowable: Flowable<HttpResult<T>>) {
-        flowable
+    public fun <T : Any> exec(flowable: Flowable<HttpResult<T>>): Disposable {
+        return flowable
                 .doOnSubscribe(Consumer {
                     //由于有缓存的存在，这里暂时当做备用策略
                     //                    if (!haveNetConnection(context)) {
@@ -137,5 +138,14 @@ class NetManager {
                 .subscribe(
                         { Log.v("test", it.toString()) },
                         { Log.v("test", it.toString()) })
+    }
+
+    /**
+     * 仅封装了处理，需要手动调用（subscribe）
+     */
+    public fun <T : Any> execR(flowable: Flowable<HttpResult<T>>): Flowable<T> {
+        return flowable
+                .compose(ResultHelper.processResult<T>())//结果处理
+                .compose(SchedulesHelper.applyNormalSchedulers())//线程切换
     }
 }

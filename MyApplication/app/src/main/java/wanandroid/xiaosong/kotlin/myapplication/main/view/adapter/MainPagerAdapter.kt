@@ -6,9 +6,9 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import wanandroid.xiaosong.kotlin.myapplication.R
 import wanandroid.xiaosong.kotlin.myapplication.main.view.HomePageFragment
-import wanandroid.xiaosong.kotlin.myapplication.mine.MineFragment
-import wanandroid.xiaosong.kotlin.myapplication.project.ProjectFragment
-import wanandroid.xiaosong.kotlin.myapplication.system.SystemFragment
+import wanandroid.xiaosong.kotlin.myapplication.mine.view.MineFragment
+import wanandroid.xiaosong.kotlin.myapplication.project.view.ProjectFragment
+import wanandroid.xiaosong.kotlin.myapplication.system.view.SystemFragment
 
 /**
  * Created by LiXiaoSong on 18/6/28

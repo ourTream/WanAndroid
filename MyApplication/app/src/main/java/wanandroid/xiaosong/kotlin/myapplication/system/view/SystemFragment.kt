@@ -1,4 +1,4 @@
-package wanandroid.xiaosong.kotlin.myapplication.system
+package wanandroid.xiaosong.kotlin.myapplication.system.view
 
 import android.support.v4.app.Fragment
 import wanandroid.xiaosong.kotlin.myapplication.R
