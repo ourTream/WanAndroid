@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 android {
     def ex = rootProject.ext
     compileSdkVersion ex.androidCompileSdkVersion
@@ -34,6 +35,15 @@ dependencies {
     implementation support.rxJava2CallAdapter
     implementation support.gsonConverter
     implementation support.loggionInterceptor
+    //dbflow相关库
+    kapt support.dbflowProcessor
+    api support.dbflowCore
+    api support.dbflow
+    api support.dbkotlinExtensions
+    api support.dbflowrxjava2
+    api support.dbflowkotlinrx
+    //dbflow相关库end
+    api support.barlibrary
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

@@ -27,15 +27,18 @@ class NetManager {
 
     companion object {
         private lateinit var INSTANCE: NetManager
+        private lateinit var INSTANCE_NO_CACHE: NetManager
         private lateinit var context: Context
         /**
          * 初始化方法，在application中调用，且只能调用一次
          */
         fun init(applicationContext: Context) {
             this.context = applicationContext
-            this.INSTANCE = NetManager()
+            this.INSTANCE = NetManager(true)
+            this.INSTANCE_NO_CACHE = NetManager(false)
         }
 
+        //获取有缓存策略的网络请求
         @JvmStatic
         fun getInstance(): NetManager {
             if (context == null) {
@@ -44,6 +47,17 @@ class NetManager {
             }
             return INSTANCE
         }
+
+        //无缓存策略的网络请求
+        @JvmStatic
+        fun getInstanceNoCache(): NetManager {
+            if (context == null) {
+                Log.e("NetManager", "no context!")
+                throw RuntimeException("netManager no context,please init in application")
+            }
+            return INSTANCE_NO_CACHE
+        }
+
     }
 
     //缓存策略拦截器，有网时，将数据进行缓存，但每隔5秒将从新请求新的数据，无网时，直接使用缓存数据
@@ -75,15 +89,18 @@ class NetManager {
         }
     }
 
-    private constructor() {
+    private constructor(hasCache: Boolean) {
+        var builder = OkHttpClient.Builder()
         //配置缓存
-        var file = File("${context.cacheDir}${File.separator}netcache")
-        var cache = Cache(file, 20 * 1024 * 1024)
+        if (hasCache) {
+            var file = File("${context.cacheDir}${File.separator}netcache")
+            var cache = Cache(file, 20 * 1024 * 1024)
+            builder.cache(cache)
+                    .addInterceptor(cacheInterceptor)
+                    .addNetworkInterceptor(cacheInterceptor)
+        }
         //初始化Okhttp
-        var client: OkHttpClient = OkHttpClient.Builder()
-                .cache(cache)
-                .addInterceptor(cacheInterceptor)
-                .addNetworkInterceptor(cacheInterceptor)
+        var client: OkHttpClient = builder
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
@@ -118,7 +135,7 @@ class NetManager {
                 .compose(ResultHelper.processResult<T>())//结果处理
                 .compose(SchedulesHelper.applyNormalSchedulers())//线程切换
                 .subscribe(
-                        Consumer { T -> Log.v("test", T.toString()) },
-                        Consumer { e -> Log.v("test", e.toString()) })
+                        { Log.v("test", it.toString()) },
+                        { Log.v("test", it.toString()) })
     }
 }

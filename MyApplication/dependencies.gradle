@@ -18,15 +18,17 @@ ext {
     rxAndroidVersion = '2.0.2'
     rxKotlinVersion = '2.2.0'
     rxJava2CallAdapterVersion = '2.3.0'
-    rxCacheVersion= '2.3.1'
-    gsonConverterVersion='2.3.0'
-    loggerVersion='3.8.1'
+    rxCacheVersion = '2.3.1'
+    gsonConverterVersion = '2.3.0'
+    loggerVersion = '3.8.1'
     kotlin_coroutinesVersion = "0.15"
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
     gsonVersion = '2.3'
     retrofitVersion = '2.4.0'
     glideVersion = '3.7.0'
+    dbflow_version = '4.2.4'
+    barLibraryVersion = '2.3.0'
 
 //小日本写的转换器 https://github.com/wasabeef/glide-transformations
     glideTransformationVersion = '2.0.1'
@@ -72,7 +74,17 @@ ext {
             asynchttp          : "com.loopj.android:android-async-http:${asynhttpVersion}",
             glide              : "com.github.bumptech.glide:glide:${glideVersion}",
             glideTransformation: "jp.wasabeef:glide-transformations:${glideTransformationVersion}",
-            retrofit           : "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+            retrofit           : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            //dbflow相关
+            dbflowProcessor    : "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}",
+            dbflowCore         : "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}",
+            dbflow             : "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}",
+            dbkotlinExtensions : "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:${dbflow_version}",
+            dbflowrxjava2      : "com.github.Raizlabs.DBFlow:dbflow-rx2:${dbflow_version}",
+            dbflowkotlinrx     : "com.github.Raizlabs.DBFlow:dbflow-rx2-kotlinextensions:${dbflow_version}",
+            //沉浸式状态栏
+            barlibrary         : "com.gyf.barlibrary:barlibrary:${barLibraryVersion}"
+
     ]
 
     supportDependencies = [
