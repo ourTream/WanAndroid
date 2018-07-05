@@ -28,34 +28,38 @@ class HomePagePresenter(view: HomePageView) : BasePresenter(view) {
         NetManager
                 .getInstance()
                 .execR(RemoteProvider.getServiceProvider().getMainArticalList(currentPage))
-                .subscribe(
-                        {
-                            if (adapter == null) {
-                                adapter = MainListAdapter(v.getListItemViewId(), it.datas)
-                                adapter?.bindToRecyclerView(v.getRecycleView())
-                                adapter?.setPreLoadNumber(2)
-                                adapter?.disableLoadMoreIfNotFullPage()
-                                adapter?.setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener {
-                                    override fun onLoadMoreRequested() {
-                                        loadMainListData(false)
-                                    }
-                                }, v.getRecycleView())
-                                adapter?.setEmptyView(v.getEmptyView(), v.getRecycleView())
-                            } else {
-                                if (currentPage == 0) {//上拉刷新
-                                    adapter?.setNewData(it.datas)
-                                }
-                                if (currentPage > 0) {//下拉加载更多
-                                    adapter?.addData(it.datas)
-                                    adapter?.loadMoreComplete()
-                                    if (it.datas.size == 0) {
-                                        adapter?.loadMoreEnd()
-                                    }
-                                }
+                .filter({
+                    //初始化adapter
+                    if (adapter == null) {
+                        adapter = MainListAdapter(v.getListItemViewId(), it.datas)
+                        adapter?.bindToRecyclerView(v.getRecycleView())
+                        adapter?.setPreLoadNumber(2)
+                        adapter?.disableLoadMoreIfNotFullPage()
+                        adapter?.setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener {
+                            override fun onLoadMoreRequested() {
+                                loadMainListData(false)
                             }
-
-                            v.showSuccess()
-                        },
+                        }, v.getRecycleView())
+                        adapter?.setEmptyView(v.getEmptyView(), v.getRecycleView())
+                        false
+                    } else
+                        true
+                })
+                .map {
+                    //数据处理
+                    if (currentPage == 0) {//上拉刷新
+                        adapter?.setNewData(it.datas)
+                    }
+                    if (currentPage > 0) {//下拉加载更多
+                        adapter?.addData(it.datas)
+                        adapter?.loadMoreComplete()
+                        if (it.datas.size == 0) {
+                            adapter?.loadMoreEnd()
+                        }
+                    }
+                }
+                .subscribe(//结果处理
+                        { v.showSuccess() },
                         {
                             v.showError(it.message ?: "")
                             if (currentPage > 0) {
