@@ -5,7 +5,7 @@ import wanandroid.xiaosong.kotlin.library.net.NetManager
 
 /**
  * Created by LiXiaoSong on 18/6/26
- *功能描述：
+ *功能描述：app基类
  */
 class App : Application() {
     companion object {

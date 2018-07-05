@@ -43,6 +43,7 @@ dependencies {
     api support.dbflowrxjava2
     api support.dbflowkotlinrx
     api support.baseRecycleViewAdapter
+    api support.glide
     //dbflow相关库end
     api support.barlibrary
     testImplementation 'junit:junit:4.12'

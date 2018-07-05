@@ -12,7 +12,7 @@ import wanandroid.xiaosong.kotlin.myapplication.system.view.SystemFragment
 
 /**
  * Created by LiXiaoSong on 18/6/28
- *功能描述：
+ *功能描述：主界面框架
  */
 class MainPagerAdapter(fm: FragmentManager, context: Context) : FragmentPagerAdapter(fm) {
     val titleArray: Array<String> = context.resources.getStringArray(R.array.main_title_array)

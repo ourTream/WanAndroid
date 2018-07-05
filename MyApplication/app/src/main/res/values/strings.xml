@@ -2,4 +2,6 @@
     <string name="app_name">My Application</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="mainpage">首页</string>
+    <string name="no_data">无数据</string>
+    <string name="label">标签：</string>
 </resources>

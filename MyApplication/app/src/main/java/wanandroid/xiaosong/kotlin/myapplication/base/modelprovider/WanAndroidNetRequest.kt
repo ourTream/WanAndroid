@@ -10,6 +10,9 @@ import wanandroid.xiaosong.kotlin.myapplication.main.model.entity.TestBean
  *功能描述：本项目的所有接口声明
  */
 interface WanAndroidNetRequest {
+    /**
+     * 首页列表，页数从0开始
+     */
     @GET("article/list/{pageNo}/json")
-    fun getMainArticalList(@Path("pageNo") pageNo: String): Flowable<HttpResult<TestBean>>
+    fun getMainArticalList(@Path("pageNo") pageNo: Int): Flowable<HttpResult<TestBean>>
 }

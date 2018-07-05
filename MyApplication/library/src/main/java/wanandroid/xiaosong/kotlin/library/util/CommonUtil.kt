@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkInfo
+import android.view.View
 
 /**
  * Created by LiXiaoSong on 18/6/26
@@ -24,13 +25,12 @@ fun haveNetConnection(context: Context): Boolean {
     }
     return false
 }
-
 /**
  * dp转px
  */
 fun dpToPx(context: Context, value: Int): Int {
     var scale = context.resources.displayMetrics.density;
-    return (value * scale + 0.5f) as Int
+    return (value * scale + 0.5f).toInt()
 }
 
 /**
@@ -38,5 +38,5 @@ fun dpToPx(context: Context, value: Int): Int {
  */
 fun pxToDp(context: Context, value: Int): Int {
     var scale = context.resources.displayMetrics.density;
-    return return (value / scale + 0.5f) as Int
+    return (value / scale + 0.5f) as Int
 }

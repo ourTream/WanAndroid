@@ -8,13 +8,14 @@ import android.view.ViewGroup
 
 /**
  * Created by LiXiaoSong on 18/6/27
- *功能描述：
+ *功能描述：fragment基类
  */
 open abstract class BaseFragment : Fragment() {
     private var root: View? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (root == null)
-            root = inflater.inflate(getLayoutId(), container,false)
+        if (root == null) {
+            root = inflater.inflate(getLayoutId(), container, false)
+        }
         return root
     }
 

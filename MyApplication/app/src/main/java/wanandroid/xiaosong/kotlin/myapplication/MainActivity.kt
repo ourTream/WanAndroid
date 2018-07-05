@@ -26,7 +26,6 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initData() {
-        NetManager.getInstance().exec(RemoteProvider.getServiceProvider().getMainArticalList("0"))
     }
 
     override fun initView() {
